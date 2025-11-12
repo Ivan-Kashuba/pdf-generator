@@ -1,0 +1,23 @@
+{
+  "name": "pdf-generator",
+  "version": "1.0.0",
+  "description": "TypeScript HTML to PDF generator using WeasyPrint",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run build:html",
+    "build:html": "ts-node src/index.ts",
+    "build:pdf": "ts-node src/index.ts --pdf",
+    "format": "prettier --write \"{src,styles}/**/*.{ts,css,html}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^5.0.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

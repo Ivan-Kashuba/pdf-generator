@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{document.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <main class="statement {{document.singlePageClass}}">
+      <!-- <div class="legal-runner-container" aria-hidden="true">
+        <p class="legal-runner__label">Legal Notice</p>
+        <p class="legal-runner__text">{{document.legalNotice}}</p>
+      </div>
+      <div class="combined-legal-runner" aria-hidden="true">
+        <div class="combined-legal-runner__section">
+          <p class="legal-runner__label">Legal Notice</p>
+          <p class="legal-runner__text">{{document.legalNotice}}</p>
+        </div>
+        <div class="combined-legal-runner__section">
+          <p class="extended-legal-runner__label">Questions & Support</p>
+          <p class="extended-legal-runner__text">
+            {{document.extendedLegalNotice}}
+          </p>
+        </div>
+      </div> -->
+
+      <header class="statement-header">
+        <div class="brand">
+          <span class="brand-mark">{{document.brandInitial}}</span>
+          <div class="brand-details">
+            <p class="brand-name">{{document.companyName}}</p>
+            <p class="brand-tagline">{{document.companyDescription}}</p>
+            <p class="brand-contact">{{document.supportEmail}}</p>
+          </div>
+        </div>
+        <div class="document-meta">
+          <p class="document-title">{{document.title}}</p>
+          <dl class="meta-grid">{{document.metaRows}}</dl>
+        </div>
+      </header>
+
+      <section class="info-section">
+        <div class="qr-column">
+          <img
+            src="{{document.qrCode}}"
+            alt="{{document.qrAltText}}"
+            class="qr-code"
+          />
+        </div>
+        <div class="info-columns">
+          <div class="statement-for">
+            <p class="section-label">Statement for:</p>
+            <div class="statement-address">{{recipient.addressHtml}}</div>
+          </div>
+          <div class="balance-summary">{{balances.rows}}</div>
+        </div>
+      </section>
+
+      <section class="transactions">
+        <table class="statement-table">
+          <thead>
+            <tr>
+              <th>Posted Date</th>
+              <th>Date of Transaction</th>
+              <th>Card ID</th>
+              <th>Transaction Details</th>
+              <th class="numeric">Withdrawals</th>
+              <th class="numeric">Deposits</th>
+              <th class="numeric">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{transactions.rows}}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
