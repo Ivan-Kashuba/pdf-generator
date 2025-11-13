@@ -1,9 +1,14 @@
 {
   "document": {
+    "logo": "assets/logo.svg",
+    "logoAltText": "Eynod Financial Solutions",
+    "qrCode": "assets/qr-code.svg",
+    "qrAltText": "Account statement QR code",
     "title": "Statement",
     "companyName": "Eynod Financial Solutions",
     "companyDescription": "Banking services provided by First Century Bank N.A.",
     "supportEmail": "support@eynod.com",
+    "supportPhone": "18009169577",
     "brandInitial": "e",
     "meta": [
       { "label": "Statement #", "value": "44" },
@@ -12,10 +17,15 @@
       { "label": "Statement Date:", "value": "Jul 1, 2021" },
       { "label": "Page No:", "value": "1 of 2" }
     ],
-    "qrCode": "assets/qr-code.svg",
-    "qrAltText": "Account statement QR code",
+
     "legalNotice": "Banking services provided by First Century Bank N.A., Member FDIC. The Eynod Card is issued by First Century Bank N.A., pursuant to a license from Visa® U.S.A. Inc. Card can be used everywhere Visa is accepted. © 2025 Eynod Financial Technologies. All rights reserved.",
     "extendedLegalNotice": "For reconciliation support or dispute resolution, contact your account manager at support@eynod.com or +1 (415) 555-0133 within 5 business days."
+  },
+  "company": {
+    "name": "Eynod Financial Solutions",
+    "tagline": "Banking services provided by First Century Bank N.A.",
+    "contactEmail": "support@eynod.com",
+    "contactPhone": "+1 (415) 555-0133"
   },
   "recipient": {
     "addressLines": [
@@ -117,7 +127,7 @@
       "postedDate": "06-07-2021",
       "transactionDate": "06-04-2021",
       "cardId": "1123",
-      "details": "Best Embarcadero Parking",
+      "details": "Best Embarcadero Parking Best Embarcadero Parking",
       "withdrawals": 35,
       "deposits": null,
       "balance": 3908.55
@@ -279,7 +289,7 @@
       "postedDate": "06-14-2021",
       "transactionDate": "06-11-2021",
       "cardId": "1123",
-      "details": "Embarcadero Centre Postage",
+      "details": "Embarcadero Centre Postage 12",
       "withdrawals": 54.75,
       "deposits": null,
       "balance": 2011.1

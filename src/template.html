@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body>
-    <main class="statement {{document.singlePageClass}}">
-      <!-- <div class="legal-runner-container" aria-hidden="true">
-        <p class="legal-runner__label">Legal Notice</p>
-        <p class="legal-runner__text">{{document.legalNotice}}</p>
+  <body class="{{document.singlePageBodyClass}}">
+    <!-- Footer for all pages but the last -->
+    <footer class="multi-page-footer multi-page-footer--default">
+      All pages but last
+    </footer>
+
+    <main class="statement">
+      <div class="legal-runner-container" aria-hidden="true">
+        <p class="legal-runner__text">{{document.legalNotice}} LN</p>
       </div>
       <div class="combined-legal-runner" aria-hidden="true">
         <div class="combined-legal-runner__section">
-          <p class="legal-runner__label">Legal Notice</p>
           <p class="legal-runner__text">{{document.legalNotice}}</p>
         </div>
         <div class="combined-legal-runner__section">
@@ -24,20 +27,48 @@
             {{document.extendedLegalNotice}}
           </p>
         </div>
-      </div> -->
+      </div>
 
       <header class="statement-header">
-        <div class="brand">
-          <span class="brand-mark">{{document.brandInitial}}</span>
-          <div class="brand-details">
-            <p class="brand-name">{{document.companyName}}</p>
-            <p class="brand-tagline">{{document.companyDescription}}</p>
-            <p class="brand-contact">{{document.supportEmail}}</p>
+        <div class="statement-header__brand">
+          <img src="{{document.logo}}" alt="{{document.logoAltText}}" />
+          <div class="brand-info">
+            <p class="brand-info__name">{{company.name}}</p>
+            <p class="brand-info__tagline">{{company.tagline}}</p>
+            <div class="brand-info__contacts">
+              <span class="brand-info__contact">{{company.contactEmail}}</span>
+              <span class="brand-info__divider" aria-hidden="true"></span>
+              <span class="brand-info__contact">{{company.contactPhone}}</span>
+            </div>
           </div>
         </div>
-        <div class="document-meta">
-          <p class="document-title">{{document.title}}</p>
-          <dl class="meta-grid">{{document.metaRows}}</dl>
+
+        <div class="statement-header__metadata">
+          <h1 class="statement-header__title">{{document.title}}</h1>
+          <dl class="metadata-list">
+            <div class="metadata-list__row">
+              <dt class="metadata-list__label">Statement #</dt>
+              <dd class="metadata-list__value">{{document.statementNumber}}</dd>
+            </div>
+            <div class="metadata-list__row">
+              <dt class="metadata-list__label">Account Number:</dt>
+              <dd class="metadata-list__value metadata-list__value--mono">
+                {{document.accountNumber}}
+              </dd>
+            </div>
+            <div class="metadata-list__row">
+              <dt class="metadata-list__label">Statement Period:</dt>
+              <dd class="metadata-list__value">{{document.statementPeriod}}</dd>
+            </div>
+            <div class="metadata-list__row">
+              <dt class="metadata-list__label">Statement Date:</dt>
+              <dd class="metadata-list__value">{{document.statementDate}}</dd>
+            </div>
+            <div class="metadata-list__row metadata-list__row--divider">
+              <dt class="metadata-list__label">Page No:</dt>
+              <dd class="metadata-list__value">{{document.pageLabel}}</dd>
+            </div>
+          </dl>
         </div>
       </header>
 
@@ -76,6 +107,11 @@
           </tbody>
         </table>
       </section>
+
+      <!-- Footer for the one page pdf only -->
+      <div class="single-page-footer">Single page footer</div>
     </main>
+    <!-- Footer for the last page -->
+    <footer class="multi-page-footer multi-page-footer--last">Last page</footer>
   </body>
 </html>

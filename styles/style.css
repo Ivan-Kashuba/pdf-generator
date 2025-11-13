@@ -1,6 +1,6 @@
 @page {
   size: Letter;
-  margin: 48pt 48pt 72pt 48pt;
+  margin: 36pt 36pt 72pt 36pt;
 
   @bottom-left {
     content: element(legal-footer-standard);
@@ -19,7 +19,7 @@
 }
 
 @page:last {
-  margin: 48pt 48pt 96pt 48pt;
+  margin: 36pt 36pt 96pt 36pt;
 
   @bottom-left {
     content: element(legal-footer-combined);
@@ -43,31 +43,122 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
-  line-height: 1.4;
-  color: var(--color-text-primary);
-}
-
-.statement {
-  /* width: 678pt; */
-  /* margin: 0 auto; */
-  /* background-color: var(--color-surface); */
-  /* border-radius: var(--radius-lg); */
-  /* box-shadow: var(--shadow-soft); */
-  padding: var(--spacing-xxl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xxl);
+@media print {
 }
 
 .statement-header {
   display: flex;
   justify-content: space-between;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-xxl);
   align-items: flex-start;
+}
+
+.statement-header__brand {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.brand-logo {
+  width: 36pt;
+  height: 36pt;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #043837, #0b6b63);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo__initial {
+  font-size: 18pt;
+  font-weight: var(--font-weight-medium);
+  color: #ffffff;
+  text-transform: lowercase;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+}
+
+.brand-info__name {
+  margin: 0;
+  font-size: 14pt;
+  font-weight: var(--font-weight-semibold);
+  color: #099250;
+}
+
+.brand-info__tagline {
+  margin: 0;
+  font-size: 11pt;
+  color: #333333;
+}
+
+.brand-info__contacts {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 11pt;
+  color: #099250;
+}
+
+.brand-info__divider {
+  width: 24pt;
+  height: 1pt;
+  background-color: #e9eaeb;
+}
+
+.brand-info__contact {
+  white-space: nowrap;
+}
+
+.statement-header__metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-md);
+}
+
+.statement-header__title {
+  margin: 0;
+  font-size: 28pt;
+  font-weight: var(--font-weight-semibold);
+  color: #099250;
+}
+
+.metadata-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  min-width: 220pt;
+}
+
+.metadata-list__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.metadata-list__row--divider {
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1pt solid #d1d5dc;
+}
+
+.metadata-list__label {
+  font-size: 12pt;
+  font-weight: var(--font-weight-semibold);
+  color: #111111;
+}
+
+.metadata-list__value {
+  font-size: 12pt;
+  color: #111111;
+  white-space: nowrap;
+}
+
+.metadata-list__value--mono {
+  font-family: "Arial", monospace;
 }
 
 .brand {
@@ -314,14 +405,6 @@ body {
   line-height: 1.4;
 }
 
-.legal-runner-container,
-.combined-legal-runner {
-  height: 0;
-  margin: 0;
-  padding: 0;
-  visibility: hidden;
-}
-
 .legal-runner-container {
   position: running(legal-footer-standard);
 }
@@ -338,17 +421,72 @@ body {
 
 .legal-runner__text,
 .extended-legal-runner__text {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  color: var(--color-text-dark);
   line-height: 1.4;
 }
-
-.extended-legal-runner__label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-brand-primary);
-}
-
 .combined-legal-runner__section + .combined-legal-runner__section {
   margin-top: var(--spacing-xs);
+}
+
+.legal-runner-container,
+.combined-legal-runner {
+  display: none;
+}
+
+@media print {
+  .statement {
+    display: block;
+    padding: 0;
+  }
+
+  .legal-runner-container,
+  .combined-legal-runner {
+    display: block;
+  }
+
+  .statement > header,
+  .statement > section,
+  .statement > footer {
+    margin-top: var(--spacing-xxl);
+  }
+
+  .statement > header:first-of-type {
+    margin-top: 0;
+  }
+
+  .statement > section:first-of-type {
+    margin-top: var(--spacing-xxl);
+  }
+
+  .legal-runner-container,
+  .combined-legal-runner {
+    display: block;
+  }
+}
+
+.multi-page-footer {
+  position: running(footer);
+}
+
+@page {
+  @bottom-center {
+    content: element(footer);
+  }
+}
+
+.multi-page-footer {
+  display: block;
+}
+
+.single-page-footer {
+  display: none;
+}
+
+.document--single .multi-page-footer {
+  display: none;
+}
+
+.document--single .single-page-footer {
+  display: block;
 }

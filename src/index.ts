@@ -16,6 +16,7 @@ interface TemplateData {
     qrAltText: string;
     legalNotice: string;
     extendedLegalNotice: string;
+    pageLabel?: string;
   };
   recipient: {
     addressLines: string[];
@@ -37,8 +38,6 @@ interface TemplateData {
     balance: number;
   }>;
 }
-
-const SINGLE_PAGE_TRANSACTION_THRESHOLD = 16;
 
 async function ensureDir(dirPath: string): Promise<void> {
   await mkdir(dirPath, { recursive: true });
@@ -266,6 +265,11 @@ function renderTransactions(items: TemplateData["transactions"]): string {
     .join("");
 }
 
+interface TemplateRenderOptions {
+  isSinglePage: boolean;
+  pageCount?: number | null;
+}
+
 function replaceTokens(
   template: string,
   tokens: Record<string, string>
@@ -276,6 +280,143 @@ function replaceTokens(
     }
     return match;
   });
+}
+
+function buildTemplateReplacements(
+  data: TemplateData,
+  options: TemplateRenderOptions
+): Record<string, string> {
+  const replacements = { ...flattenObject(data) };
+  replacements["document.metaRows"] = renderMetaRows(data.document.meta);
+  replacements["recipient.addressHtml"] = renderAddress(
+    data.recipient.addressLines
+  );
+  replacements["balances.rows"] = renderBalanceRows(data.balances);
+  replacements["transactions.rows"] = renderTransactions(data.transactions);
+  replacements["document.singlePageBodyClass"] = options.isSinglePage
+    ? "document--single"
+    : "";
+  replacements["document.isSinglePage"] = options.isSinglePage
+    ? "true"
+    : "false";
+  replacements["document.pageCount"] =
+    options.pageCount !== undefined && options.pageCount !== null
+      ? String(options.pageCount)
+      : "";
+  replacements["document.statementNumber"] =
+    data.document.meta.find((item) => item.label === "Statement #")?.value ??
+    "";
+  replacements["document.accountNumber"] =
+    data.document.meta.find((item) => item.label === "Account Number:")
+      ?.value ?? "";
+  replacements["document.statementPeriod"] =
+    data.document.meta.find((item) => item.label === "Statement Period:")
+      ?.value ?? "";
+  replacements["document.statementDate"] =
+    data.document.meta.find((item) => item.label === "Statement Date:")
+      ?.value ?? "";
+  replacements["document.pageLabel"] =
+    data.document.pageLabel ??
+    data.document.meta.find((item) => item.label === "Page No:")?.value ??
+    "";
+
+  return replacements;
+}
+
+function renderTemplate(
+  template: string,
+  data: TemplateData,
+  options: TemplateRenderOptions
+): string {
+  return replaceTokens(template, buildTemplateReplacements(data, options));
+}
+
+function detectPageCount(htmlPath: string): number | null {
+  const pythonScript = [
+    "from weasyprint import HTML",
+    "import sys",
+    "",
+    "html_path = sys.argv[1]",
+    "document = HTML(filename=html_path).render()",
+    "print(len(document.pages))",
+  ].join("\n");
+
+  const pythonCandidates = [
+    process.env.WEASYPRINT_PYTHON?.trim(),
+    "python",
+    "py",
+  ].filter((value): value is string => Boolean(value && value.length));
+
+  const attempts: Array<{
+    command: string;
+    error: Error | null;
+    status: number | null;
+    stderr: string;
+    stdout: string;
+  }> = [];
+
+  for (const command of pythonCandidates) {
+    const result = spawnSync(command, ["-c", pythonScript, htmlPath], {
+      encoding: "utf-8",
+    });
+
+    if (!result.error && result.status === 0) {
+      const output = (result.stdout ?? "").trim();
+      const pageCount = Number.parseInt(output, 10);
+      if (!Number.isNaN(pageCount)) {
+        return pageCount;
+      }
+      attempts.push({
+        command,
+        error: new Error(
+          `Unexpected page count output "${output}" (stderr="${(result.stderr ?? "").trim()}")`
+        ),
+        status: 0,
+        stderr: result.stderr ?? "",
+        stdout: result.stdout ?? "",
+      });
+      break;
+    }
+
+    attempts.push({
+      command,
+      error: result.error ?? null,
+      status: result.status ?? null,
+      stderr: result.stderr ?? "",
+      stdout: result.stdout ?? "",
+    });
+
+    if (
+      result.error &&
+      (result.error as NodeJS.ErrnoException).code !== "ENOENT"
+    ) {
+      break;
+    }
+  }
+
+  if (attempts.length) {
+    const details = attempts
+      .map((attempt) => {
+        const parts = [` - ${attempt.command}`];
+        if (attempt.error) {
+          parts.push(`error=${attempt.error.message}`);
+        }
+        if (attempt.status !== null) {
+          parts.push(`status=${attempt.status}`);
+        }
+        if (attempt.stderr) {
+          parts.push(`stderr=${attempt.stderr.trim()}`);
+        }
+        return parts.join(" ");
+      })
+      .join("\n");
+
+    console.warn(
+      `Unable to determine page count using Python. Assuming multiple pages.\n${details}`
+    );
+  }
+
+  return null;
 }
 
 async function generateHtml(
@@ -296,24 +437,28 @@ async function generateHtml(
   const outputDir = path.resolve(baseDir, "dist");
   await ensureDir(outputDir);
 
-  const isSinglePage =
-    data.transactions.length <= SINGLE_PAGE_TRANSACTION_THRESHOLD;
-
-  const replacements: Record<string, string> = flattenObject(data);
-  replacements["document.metaRows"] = renderMetaRows(data.document.meta);
-  replacements["recipient.addressHtml"] = renderAddress(
-    data.recipient.addressLines
-  );
-  replacements["balances.rows"] = renderBalanceRows(data.balances);
-  replacements["transactions.rows"] = renderTransactions(data.transactions);
-  replacements["document.singlePageClass"] = isSinglePage
-    ? "statement--single"
-    : "";
-
-  const renderedHtml = replaceTokens(templateRaw, replacements);
   const outputHtmlPath = path.resolve(outputDir, "output.html");
+  const initialHtml = renderTemplate(templateRaw, data, {
+    isSinglePage: false,
+  });
 
-  await writeFile(outputHtmlPath, renderedHtml, "utf-8");
+  await writeFile(outputHtmlPath, initialHtml, "utf-8");
+
+  const detectedPageCount = detectPageCount(outputHtmlPath);
+
+  console.log("detectedPageCount:", detectedPageCount);
+
+  const isSinglePage = detectedPageCount !== null && detectedPageCount === 1;
+
+  const html = renderTemplate(templateRaw, data, {
+    isSinglePage: isSinglePage,
+    pageCount: detectedPageCount,
+  });
+
+  if (html !== initialHtml) {
+    await writeFile(outputHtmlPath, html, "utf-8");
+  }
+
   await copyDirectoryIfExists(stylesDir, path.resolve(outputDir, "styles"));
   await copyDirectoryIfExists(assetsDir, path.resolve(outputDir, "assets"));
 
