@@ -5,11 +5,8 @@
     "qrCode": "assets/qr-code.svg",
     "qrAltText": "Account statement QR code",
     "title": "Statement",
-    "companyName": "Eynod Financial Solutions",
-    "companyDescription": "Banking services provided by First Century Bank N.A.",
     "supportEmail": "support@eynod.com",
     "supportPhone": "18009169577",
-    "brandInitial": "e",
     "meta": [
       { "label": "Statement #", "value": "44" },
       { "label": "Account Number:", "value": "5111-1111-1111-1111" },
