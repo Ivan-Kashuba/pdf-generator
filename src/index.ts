@@ -11,23 +11,29 @@ interface TemplateData {
     companyDescription: string;
     supportEmail: string;
     brandInitial: string;
-    meta: Array<{ label: string; value: string }>;
+    meta: {
+      statementNumber: string;
+      accountNumber: string;
+      statementPeriod: string;
+      statementDate: string;
+      pageCount?: string;
+    };
     qrCode: string;
     qrAltText: string;
     legalNotice: string;
     extendedLegalNotice: string;
-    pageLabel?: string;
+    pageCount?: string;
   };
   recipient: {
     addressLines: string[];
   };
-  balances: Array<{
-    label: string;
-    value: number;
-    prefix?: string;
-    emphasize?: boolean;
-    dividerAfter?: boolean;
-  }>;
+  balances: {
+    opening: number;
+    withdrawals: number;
+    deposits: number;
+    closingLabel: string;
+    closing: number;
+  };
   transactions: Array<{
     postedDate: string;
     transactionDate: string;
@@ -195,17 +201,6 @@ function formatCurrency(value: CurrencyValue): string {
   return currencyFormatter.format(value);
 }
 
-function renderMetaRows(items: TemplateData["document"]["meta"]): string {
-  return items
-    .map(
-      (item) => `
-        <dt>${item.label}</dt>
-        <dd>${item.value}</dd>
-      `
-    )
-    .join("");
-}
-
 function renderAddress(
   lines: TemplateData["recipient"]["addressLines"]
 ): string {
@@ -215,27 +210,6 @@ function renderAddress(
         <p>${line}</p>
       `
     )
-    .join("");
-}
-
-function renderBalanceRows(items: TemplateData["balances"]): string {
-  return items
-    .map((item) => {
-      const classes = ["balance-row"];
-      if (item.dividerAfter) {
-        classes.push("balance-row--divider");
-      }
-      const prefix = item.prefix ?? "";
-      const value =
-        `${prefix}${prefix ? " " : ""}${formatCurrency(item.value)}`.trim();
-      const valueMarkup = item.emphasize ? `<strong>${value}</strong>` : value;
-      return `
-        <div class="${classes.join(" ")}">
-          <span>${item.label}</span>
-          <span>${valueMarkup}</span>
-        </div>
-      `;
-    })
     .join("");
 }
 
@@ -287,11 +261,9 @@ function buildTemplateReplacements(
   options: TemplateRenderOptions
 ): Record<string, string> {
   const replacements = { ...flattenObject(data) };
-  replacements["document.metaRows"] = renderMetaRows(data.document.meta);
   replacements["recipient.addressHtml"] = renderAddress(
     data.recipient.addressLines
   );
-  replacements["balances.rows"] = renderBalanceRows(data.balances);
   replacements["transactions.rows"] = renderTransactions(data.transactions);
   replacements["document.singlePageBodyClass"] = options.isSinglePage
     ? "document--single"
@@ -304,21 +276,22 @@ function buildTemplateReplacements(
       ? String(options.pageCount)
       : "";
   replacements["document.statementNumber"] =
-    data.document.meta.find((item) => item.label === "Statement #")?.value ??
-    "";
+    data.document.meta.statementNumber ?? "";
   replacements["document.accountNumber"] =
-    data.document.meta.find((item) => item.label === "Account Number:")
-      ?.value ?? "";
+    data.document.meta.accountNumber ?? "";
   replacements["document.statementPeriod"] =
-    data.document.meta.find((item) => item.label === "Statement Period:")
-      ?.value ?? "";
+    data.document.meta.statementPeriod ?? "";
   replacements["document.statementDate"] =
-    data.document.meta.find((item) => item.label === "Statement Date:")
-      ?.value ?? "";
-  replacements["document.pageLabel"] =
-    data.document.pageLabel ??
-    data.document.meta.find((item) => item.label === "Page No:")?.value ??
-    "";
+    data.document.meta.statementDate ?? "";
+  replacements["document.pageCount"] =
+    data.document.pageCount ?? data.document.meta.pageCount ?? "";
+  replacements["balances.opening"] = formatCurrency(data.balances.opening);
+  replacements["balances.withdrawals"] = formatCurrency(
+    data.balances.withdrawals
+  );
+  replacements["balances.deposits"] = formatCurrency(data.balances.deposits);
+  replacements["balances.closing"] = formatCurrency(data.balances.closing);
+  replacements["balances.closingLabel"] = data.balances.closingLabel;
 
   return replacements;
 }

@@ -7,13 +7,13 @@
     "title": "Statement",
     "supportEmail": "support@eynod.com",
     "supportPhone": "18009169577",
-    "meta": [
-      { "label": "Statement #", "value": "44" },
-      { "label": "Account Number:", "value": "5111-1111-1111-1111" },
-      { "label": "Statement Period:", "value": "Jun 1 - Jun 30, 2021" },
-      { "label": "Statement Date:", "value": "Jul 1, 2021" },
-      { "label": "Page No:", "value": "1 of 2" }
-    ],
+    "meta": {
+      "statementNumber": "44",
+      "accountNumber": "5111-1111-1111-1111",
+      "statementPeriod": "Jun 1 - Jun 30, 2021",
+      "statementDate": "Jul 1, 2021",
+      "pageCount": "2"
+    },
 
     "legalNotice": "Banking services provided by First Century Bank N.A., Member FDIC. The Eynod Card is issued by First Century Bank N.A., pursuant to a license from Visa® U.S.A. Inc. Card can be used everywhere Visa is accepted. © 2025 Eynod Financial Technologies. All rights reserved.",
     "extendedLegalNotice": "For reconciliation support or dispute resolution, contact your account manager at support@eynod.com or +1 (415) 555-0133 within 5 business days."
@@ -32,21 +32,13 @@
       "San Francisco, CA 94105"
     ]
   },
-  "balances": [
-    { "label": "Opening Balance", "value": 4500.25 },
-    { "label": "Total Withdrawals", "value": 9682.51, "prefix": "−" },
-    {
-      "label": "Total Deposits",
-      "value": 8000.6,
-      "prefix": "+",
-      "dividerAfter": true
-    },
-    {
-      "label": "Closing Balance on 06-30-2021",
-      "value": 2818.34,
-      "emphasize": true
-    }
-  ],
+  "balances": {
+    "opening": 4500.25,
+    "withdrawals": -9682.51,
+    "deposits": 8000.6,
+    "closingLabel": "Closing Balance on 06-30-2021",
+    "closing": 2818.34
+  },
   "transactions": [
     {
       "postedDate": "06-01-2021",
@@ -74,222 +66,6 @@
       "withdrawals": 121.45,
       "deposits": null,
       "balance": 4353.8
-    },
-    {
-      "postedDate": "06-02-2021",
-      "transactionDate": "06-01-2021",
-      "cardId": "1111",
-      "details": "Ferry Building Marketplace",
-      "withdrawals": 76.8,
-      "deposits": null,
-      "balance": 4277
-    },
-    {
-      "postedDate": "06-02-2021",
-      "transactionDate": "06-01-2021",
-      "cardId": "1111",
-      "details": "76 Fuel 1150 Embarcadero",
-      "withdrawals": 87.25,
-      "deposits": null,
-      "balance": 4189.75
-    },
-    {
-      "postedDate": "06-04-2021",
-      "transactionDate": "06-03-2021",
-      "cardId": "1111",
-      "details": "Trello Subscription",
-      "withdrawals": 35.2,
-      "deposits": null,
-      "balance": 4154.55
-    },
-    {
-      "postedDate": "06-04-2021",
-      "transactionDate": "06-03-2021",
-      "cardId": "1123",
-      "details": "ATM Embarcadero Center",
-      "withdrawals": 200,
-      "deposits": null,
-      "balance": 3954.55
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1111",
-      "details": "Blue Bottle Coffee",
-      "withdrawals": 11,
-      "deposits": null,
-      "balance": 3943.55
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1123",
-      "details": "Best Embarcadero Parking Best Embarcadero Parking",
-      "withdrawals": 35,
-      "deposits": null,
-      "balance": 3908.55
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1111",
-      "details": "Docmosis Subscription",
-      "withdrawals": 50,
-      "deposits": null,
-      "balance": 3858.55
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1123",
-      "details": "Embarcadero Centre Postage",
-      "withdrawals": 22.5,
-      "deposits": null,
-      "balance": 3836.05
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1111",
-      "details": "Bill Payment - Silicon Valley Graphic",
-      "withdrawals": 450,
-      "deposits": null,
-      "balance": 3386.05
-    },
-    {
-      "postedDate": "06-07-2021",
-      "transactionDate": "06-04-2021",
-      "cardId": "1111",
-      "details": "Blue Bottle Coffee",
-      "withdrawals": 11,
-      "deposits": null,
-      "balance": 3375.05
-    },
-    {
-      "postedDate": "06-08-2021",
-      "transactionDate": "06-07-2021",
-      "cardId": "1123",
-      "details": "Ferry Building Marketplace",
-      "withdrawals": 85.5,
-      "deposits": null,
-      "balance": 3289.55
-    },
-    {
-      "postedDate": "06-08-2021",
-      "transactionDate": "06-07-2021",
-      "cardId": "1111",
-      "details": "Dividend Share - Berkeley Group",
-      "withdrawals": null,
-      "deposits": 1500.6,
-      "balance": 4790.15
-    },
-    {
-      "postedDate": "06-08-2021",
-      "transactionDate": "06-07-2021",
-      "cardId": "1111",
-      "details": "Canva Subscription",
-      "withdrawals": 125,
-      "deposits": null,
-      "balance": 4665.15
-    },
-    {
-      "postedDate": "06-09-2021",
-      "transactionDate": "06-07-2021",
-      "cardId": "1123",
-      "details": "76 Fuel 1150 Embarcadero",
-      "withdrawals": 95,
-      "deposits": null,
-      "balance": 4570.15
-    },
-    {
-      "postedDate": "06-10-2021",
-      "transactionDate": "06-08-2021",
-      "cardId": "1123",
-      "details": "Embarcadero Centre Postage",
-      "withdrawals": 24.5,
-      "deposits": null,
-      "balance": 4545.65
-    },
-    {
-      "postedDate": "06-10-2021",
-      "transactionDate": "06-08-2021",
-      "cardId": "1111",
-      "details": "ATM Embarcadero Center",
-      "withdrawals": 300,
-      "deposits": null,
-      "balance": 4245.65
-    },
-    {
-      "postedDate": "06-11-2021",
-      "transactionDate": "06-09-2021",
-      "cardId": "1123",
-      "details": "Best Embarcadero Parking",
-      "withdrawals": 7.5,
-      "deposits": null,
-      "balance": 4238.15
-    },
-    {
-      "postedDate": "06-11-2021",
-      "transactionDate": "06-09-2021",
-      "cardId": "1111",
-      "details": "Internet Transfer",
-      "withdrawals": null,
-      "deposits": 1000,
-      "balance": 5238.15
-    },
-    {
-      "postedDate": "06-11-2021",
-      "transactionDate": "06-09-2021",
-      "cardId": "1111",
-      "details": "Dividend Share - McDonalds Corp",
-      "withdrawals": null,
-      "deposits": 2500,
-      "balance": 7738.15
-    },
-    {
-      "postedDate": "06-11-2021",
-      "transactionDate": "06-09-2021",
-      "cardId": "1111",
-      "details": "Bill Payment - Silicon Valley Graphic",
-      "withdrawals": 4500,
-      "deposits": null,
-      "balance": 3238.15
-    },
-    {
-      "postedDate": "06-14-2021",
-      "transactionDate": "06-11-2021",
-      "cardId": "1123",
-      "details": "Ferry Building Marketplace",
-      "withdrawals": 150.65,
-      "deposits": null,
-      "balance": 3087.5
-    },
-    {
-      "postedDate": "06-14-2021",
-      "transactionDate": "06-11-2021",
-      "cardId": "1111",
-      "details": "Bill Payment - Electricity",
-      "withdrawals": 900.65,
-      "deposits": null,
-      "balance": 2186.85
-    },
-    {
-      "postedDate": "06-14-2021",
-      "transactionDate": "06-11-2021",
-      "cardId": "1111",
-      "details": "Best Embarcadero Parking",
-      "withdrawals": 121,
-      "deposits": null,
-      "balance": 2065.85
-    },
-    {
-      "postedDate": "06-14-2021",
-      "transactionDate": "06-11-2021",
-      "cardId": "1123",
-      "details": "Embarcadero Centre Postage 12",
-      "withdrawals": 54.75,
-      "deposits": null,
-      "balance": 2011.1
     }
   ]
 }

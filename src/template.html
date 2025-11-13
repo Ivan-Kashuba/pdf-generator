@@ -10,25 +10,10 @@
   <body class="{{document.singlePageBodyClass}}">
     <!-- Footer for all pages but the last -->
     <footer class="multi-page-footer multi-page-footer--default default-footer">
-      {{document.legalNotice}}
+      Banking services provided by First Century Bank N.A., Member FDIC. The Eynod Card is issued by First Century Bank N.A., pursuant to a license from Visa® U.S.A. Inc. Card can be used everywhere Visa is accepted. © 2025 Eynod Financial Technologies. All rights reserved.
     </footer>
 
     <main class="statement">
-      <div class="legal-runner-container" aria-hidden="true">
-        <p class="legal-runner__text">{{document.legalNotice}}</p>
-      </div>
-      <div class="combined-legal-runner" aria-hidden="true">
-        <div class="combined-legal-runner__section">
-          <p class="legal-runner__text">{{document.legalNotice}}</p>
-        </div>
-        <div class="combined-legal-runner__section">
-          <p class="extended-legal-runner__label">Questions & Support</p>
-          <p class="extended-legal-runner__text">
-            {{document.extendedLegalNotice}}
-          </p>
-        </div>
-      </div>
-
       <header class="statement-header">
         <div class="statement-header__brand">
           <img
@@ -71,7 +56,7 @@
             </div>
             <div class="metadata-list__row">
               <dt class="metadata-list__label">Page No:</dt>
-              <dd class="metadata-list__value">{{document.pageLabel}}</dd>
+              <dd class="metadata-list__value">1 of {{document.pageCount}}</dd>
             </div>
 
             <div class="metadata-divider"></div>
@@ -90,7 +75,24 @@
             <p class="section-label">Statement for:</p>
             <div class="statement-address">{{recipient.addressHtml}}</div>
           </div>
-          <div class="balance-summary">{{balances.rows}}</div>
+          <div class="balance-summary">
+            <div class="balance-row">
+              <strong>Opening Balance</strong>
+              <span>{{balances.opening}}</span>
+            </div>
+            <div class="balance-row">
+              <span>Total Withdrawals</span>
+              <span>{{balances.withdrawals}}</span>
+            </div>
+            <div class="balance-row balance-row--divider">
+              <span>Total Deposits</span>
+              <span>{{balances.deposits}}</span>
+            </div>
+            <div class="balance-row">
+              <strong>{{balances.closingLabel}}</strong>
+              <strong>{{balances.closing}}</strong>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -114,7 +116,46 @@
       </section>
 
       <!-- Footer for the one page pdf only -->
-      <div class="single-page-footer">Single page footer</div>
+      <div class="single-page-footer">
+
+        <div class="default-footer">
+          Banking services provided by First Century Bank N.A., Member FDIC. The Eynod Card is issued by First Century Bank N.A., pursuant to a license from Visa® U.S.A. Inc. Card can be used everywhere Visa is accepted. © 2025 Eynod Financial Technologies. All rights reserved.
+        </div>
+
+        <div class="default-footer">
+          <p class="last-page-footer-paragraph">
+            This statement is provided for informational purposes only. Please
+            review all transactions carefully. If you believe an error or
+            unauthorized activity has occurred, contact Eynod Support within 60 days
+            of the statement date at
+            <span class="text-highlight">1-800-EYNOD-24</span>.
+          </p>
+
+          <p class="last-page-footer-paragraph">
+            Balances shown may not reflect pending transactions, holds, or recent
+            transfers. Deposits are subject to verification. Eynod reserves the
+            right to correct any errors.
+          </p>
+
+          <p class="last-page-footer-paragraph">
+            Privacy Notice: Your personal and financial data are handled in
+            accordance with Eynod's Privacy Policy at
+            <span class="text-highlight">www.eynod.com/privacy</span>.
+          </p>
+
+          <p class="last-page-footer-paragraph">
+            Banking services provided by First Century Bank N.A.™, Member FDIC. The
+            Eynod Card is issued by First Century Bank N.A.™️, pursuant to a license
+            from Visa™️ U.S.A. Inc. Card can be used everywhere Visa is accepted. ©
+            2025 Eynod Financial Technologies. All rights reserved.
+          </p>
+
+          <p class="last-page-footer-paragraph">
+            © 2025 Eynod. All rights reserved.
+          </p>
+        </div>
+
+      </div>
     </main>
     <!-- Footer for the last page -->
     <footer class="multi-page-footer multi-page-footer--last default-footer">

@@ -239,17 +239,15 @@ footer {
   display: flex;
   justify-content: space-between;
   font-size: var(--font-size-base);
-  color: var(--color-text-dark);
 }
 
 .balance-row strong {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .balance-row--divider {
   padding-bottom: var(--spacing-sm);
-  border-bottom: 0.75pt solid var(--color-border);
+  border-bottom: 1px solid black;
 }
 
 .transactions {
@@ -426,6 +424,10 @@ footer {
   line-height: 1.4;
 }
 
+.multi-page-footer {
+  margin-bottom: 30pt;
+}
+
 .last-page-footer-paragraph {
   font-size: var(--font-size-sm);
 }
@@ -433,8 +435,4 @@ footer {
 .text-highlight {
   color: var(--color-brand-primary);
   font-weight: var(--font-weight-bold);
-}
-
-@page:last {
-  margin-bottom: 680pt;
 }
