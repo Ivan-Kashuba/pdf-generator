@@ -1,22 +1,14 @@
 {
   "document": {
-    "logo": "assets/logo.svg",
-    "logoAltText": "Eynod Financial Solutions",
+    "title": "Statement",
+    "statementNumber": "44",
+    "accountNumber": "5111-1111-1111-1111",
+    "statementPeriod": "Jun 1 - Jun 30, 2021",
+    "statementDate": "Jul 1, 2021",
     "qrCode": "assets/qr-code.svg",
     "qrAltText": "Account statement QR code",
-    "title": "Statement",
-    "supportEmail": "support@eynod.com",
-    "supportPhone": "18009169577",
-    "meta": {
-      "statementNumber": "44",
-      "accountNumber": "5111-1111-1111-1111",
-      "statementPeriod": "Jun 1 - Jun 30, 2021",
-      "statementDate": "Jul 1, 2021",
-      "pageCount": "2"
-    },
-
-    "legalNotice": "Banking services provided by First Century Bank N.A., Member FDIC. The Eynod Card is issued by First Century Bank N.A., pursuant to a license from Visa® U.S.A. Inc. Card can be used everywhere Visa is accepted. © 2025 Eynod Financial Technologies. All rights reserved.",
-    "extendedLegalNotice": "For reconciliation support or dispute resolution, contact your account manager at support@eynod.com or +1 (415) 555-0133 within 5 business days."
+    "pageCount": "2",
+    "singlePageBodyClass": ""
   },
   "company": {
     "name": "Eynod Financial Solutions",

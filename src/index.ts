@@ -7,22 +7,20 @@ type CurrencyValue = number | null | undefined;
 interface TemplateData {
   document: {
     title: string;
-    companyName: string;
-    companyDescription: string;
-    supportEmail: string;
-    brandInitial: string;
-    meta: {
-      statementNumber: string;
-      accountNumber: string;
-      statementPeriod: string;
-      statementDate: string;
-      pageCount?: string;
-    };
+    statementNumber: string;
+    accountNumber: string;
+    statementPeriod: string;
+    statementDate: string;
     qrCode: string;
     qrAltText: string;
-    legalNotice: string;
-    extendedLegalNotice: string;
     pageCount?: string;
+    singlePageBodyClass?: string;
+  };
+  company: {
+    name: string;
+    tagline: string;
+    contactEmail: string;
+    contactPhone: string;
   };
   recipient: {
     addressLines: string[];
@@ -267,24 +265,12 @@ function buildTemplateReplacements(
   replacements["transactions.rows"] = renderTransactions(data.transactions);
   replacements["document.singlePageBodyClass"] = options.isSinglePage
     ? "document--single"
-    : "";
-  replacements["document.isSinglePage"] = options.isSinglePage
-    ? "true"
-    : "false";
-  replacements["document.pageCount"] =
+    : (data.document.singlePageBodyClass ?? "");
+  const pageCountValue =
     options.pageCount !== undefined && options.pageCount !== null
       ? String(options.pageCount)
-      : "";
-  replacements["document.statementNumber"] =
-    data.document.meta.statementNumber ?? "";
-  replacements["document.accountNumber"] =
-    data.document.meta.accountNumber ?? "";
-  replacements["document.statementPeriod"] =
-    data.document.meta.statementPeriod ?? "";
-  replacements["document.statementDate"] =
-    data.document.meta.statementDate ?? "";
-  replacements["document.pageCount"] =
-    data.document.pageCount ?? data.document.meta.pageCount ?? "";
+      : (data.document.pageCount ?? "");
+  replacements["document.pageCount"] = pageCountValue;
   replacements["balances.opening"] = formatCurrency(data.balances.opening);
   replacements["balances.withdrawals"] = formatCurrency(
     data.balances.withdrawals
