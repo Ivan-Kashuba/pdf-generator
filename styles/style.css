@@ -259,6 +259,11 @@ footer {
   font-size: var(--font-size-sm);
 }
 
+.last-page-footer-paragraph:first-child {
+  border-top: 1px solid var(--color-brand-primary);
+  padding-top: 8pt;
+}
+
 .text-highlight {
   color: var(--color-brand-primary);
   font-weight: var(--font-weight-bold);
