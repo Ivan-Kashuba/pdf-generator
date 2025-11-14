@@ -16,7 +16,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Arial", monospace;
+  font-family: var(--font-family-base);
   font-size: var(--font-size-base);
 }
 
@@ -47,21 +47,18 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* gap: var(--spacing-md); */
 }
 
 .statement-header__title {
   margin: 0;
   font-size: 21pt;
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   color: #099250;
 }
 
 .metadata-list {
   display: flex;
   flex-direction: column;
-  /* gap: var(--spacing-sm); */
-  /* min-width: 220pt; */
 }
 
 .metadata-list__row {
@@ -78,7 +75,7 @@ footer {
 }
 
 .metadata-list__label {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   color: #111111;
   white-space: nowrap;
 }
@@ -113,7 +110,7 @@ footer {
 .brand-name {
   margin: 0;
   font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   color: var(--color-brand-primary);
 }
 
@@ -211,7 +208,7 @@ footer {
 }
 
 .statement-table th {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   text-transform: none;
 }
 

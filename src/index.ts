@@ -378,6 +378,59 @@ function detectPageCount(htmlPath: string): number | null {
   return null;
 }
 
+async function inlineStyles(
+  template: string,
+  baseDir: string
+): Promise<string> {
+  const variablesCssPath = path.resolve(baseDir, "styles", "variables.css");
+  const styleCssPath = path.resolve(baseDir, "styles", "style.css");
+
+  const [variablesCss, styleCss] = await Promise.all([
+    readFile(variablesCssPath, "utf-8"),
+    readFile(styleCssPath, "utf-8"),
+  ]);
+
+  const combinedCss = `${variablesCss}\n\n${styleCss}`;
+
+  // Find the first link tag to get its indentation
+  const linkTagRegex = /<link\s+rel="stylesheet"\s+href="[^"]*"\s*\/?>/;
+  const firstMatch = template.match(linkTagRegex);
+
+  if (!firstMatch || firstMatch.index === undefined) {
+    return template;
+  }
+
+  // Get indentation from the line containing the first link tag
+  const beforeFirstMatch = template.substring(0, firstMatch.index);
+  const lastNewlineIndex = beforeFirstMatch.lastIndexOf("\n");
+  const lineBeforeMatch = beforeFirstMatch.substring(lastNewlineIndex + 1);
+  const indent = lineBeforeMatch.match(/^(\s*)/)?.[1] ?? "    ";
+
+  // Format CSS with proper indentation
+  const formattedCss = combinedCss
+    .split("\n")
+    .map((line) => `${indent}  ${line}`)
+    .join("\n");
+
+  // Create the style tag
+  const styleTag = `${indent}<style>\n${formattedCss}\n${indent}</style>`;
+
+  // Replace the first link tag with the style tag, remove all others
+  let isFirst = true;
+  const inlinedTemplate = template.replace(
+    /<link\s+rel="stylesheet"\s+href="[^"]*"\s*\/?>\s*/g,
+    (match) => {
+      if (isFirst) {
+        isFirst = false;
+        return styleTag + "\n";
+      }
+      return "";
+    }
+  );
+
+  return inlinedTemplate;
+}
+
 async function generateHtml(
   baseDir: string,
   shouldCreatePdf: boolean
@@ -420,6 +473,16 @@ async function generateHtml(
 
   await copyDirectoryIfExists(stylesDir, path.resolve(outputDir, "styles"));
   await copyDirectoryIfExists(assetsDir, path.resolve(outputDir, "assets"));
+
+  if (shouldCreatePdf) {
+    // Create template.html with inlined styles in dist folder
+    const inlinedTemplate = await inlineStyles(templateRaw, baseDir);
+    const templateHtmlPath = path.resolve(outputDir, "template.html");
+    await writeFile(templateHtmlPath, inlinedTemplate, "utf-8");
+    console.log(
+      `Template HTML with inlined styles generated at ${templateHtmlPath}`
+    );
+  }
 
   if (!shouldCreatePdf) {
     console.log(`HTML generated at ${outputHtmlPath}`);
