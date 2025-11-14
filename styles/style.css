@@ -234,6 +234,10 @@ footer {
   display: block;
 }
 
+.multi-page-footer--last {
+  height: var(--last-footer-space);
+}
+
 .single-page-footer {
   display: none;
 }
@@ -267,4 +271,26 @@ footer {
 .text-highlight {
   color: var(--color-brand-primary);
   font-weight: var(--font-weight-bold);
+}
+
+.last-page-spacer {
+  display: none;
+}
+
+@media print {
+  .last-page-spacer {
+    display: block;
+    height: var(--last-footer-space);
+    min-height: var(--last-footer-space);
+    margin: 0;
+    padding: 0;
+    border: none;
+    /* This spacer pushes content up on the last page to prevent overlap with footer */
+    /* If content + spacer doesn't fit on one page, content will break to previous page */
+  }
+
+  /* Skip spacer logic for single-page documents */
+  .document--single .last-page-spacer {
+    display: none;
+  }
 }

@@ -46,4 +46,6 @@
   --radius-md: 10pt;
   --radius-lg: 14pt;
   --shadow-soft: 0 4pt 14pt rgba(15, 23, 42, 0.08);
+
+  --last-footer-space: 160pt;
 }

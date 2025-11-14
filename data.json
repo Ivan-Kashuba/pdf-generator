@@ -34,30 +34,93 @@
   "transactions": [
     {
       "postedDate": "06-01-2021",
-      "transactionDate": "Opening Balance",
-      "cardId": "",
-      "details": "",
-      "withdrawals": null,
-      "deposits": null,
-      "balance": 4500.25
-    },
-    {
-      "postedDate": "06-01-2021",
-      "transactionDate": "05-31-2021",
-      "cardId": "1111",
-      "details": "Best Embarcadero Parking",
-      "withdrawals": 25,
-      "deposits": null,
-      "balance": 4475.25
-    },
-    {
-      "postedDate": "06-01-2021",
       "transactionDate": "05-31-2021",
       "cardId": "1111",
       "details": "AIG Insurance Adjustment 20-21",
       "withdrawals": 121.45,
       "deposits": null,
       "balance": 4353.8
+    },
+    {
+      "postedDate": "06-02-2021",
+      "transactionDate": "06-01-2021",
+      "cardId": "1111",
+      "details": "Whole Foods Market #345",
+      "withdrawals": 87.23,
+      "deposits": null,
+      "balance": 4266.57
+    },
+    {
+      "postedDate": "06-02-2021",
+      "transactionDate": "06-01-2021",
+      "cardId": "1111",
+      "details": "Starbucks Coffee #5421",
+      "withdrawals": 5.67,
+      "deposits": null,
+      "balance": 4260.9
+    },
+    {
+      "postedDate": "06-03-2021",
+      "transactionDate": "06-02-2021",
+      "cardId": "1111",
+      "details": "Chevron Station #892",
+      "withdrawals": 45.5,
+      "deposits": null,
+      "balance": 4215.4
+    },
+    {
+      "postedDate": "06-03-2021",
+      "transactionDate": "06-02-2021",
+      "cardId": "",
+      "details": "Payroll Deposit - Abstractors Co.",
+      "withdrawals": null,
+      "deposits": 3200.0,
+      "balance": 7415.4
+    },
+    {
+      "postedDate": "06-04-2021",
+      "transactionDate": "06-03-2021",
+      "cardId": "1111",
+      "details": "Amazon.com Purchase",
+      "withdrawals": 234.56,
+      "deposits": null,
+      "balance": 7180.84
+    },
+    {
+      "postedDate": "06-04-2021",
+      "transactionDate": "06-03-2021",
+      "cardId": "1111",
+      "details": "Uber Trip",
+      "withdrawals": 18.75,
+      "deposits": null,
+      "balance": 7162.09
+    },
+    {
+      "postedDate": "06-03-2021",
+      "transactionDate": "06-02-2021",
+      "cardId": "1111",
+      "details": "Chevron Station #892",
+      "withdrawals": 45.5,
+      "deposits": null,
+      "balance": 4215.4
+    },
+    {
+      "postedDate": "06-03-2021",
+      "transactionDate": "06-02-2021",
+      "cardId": "",
+      "details": "Payroll Deposit - Abstractors Co.",
+      "withdrawals": null,
+      "deposits": 3200.0,
+      "balance": 7415.4
+    },
+    {
+      "postedDate": "06-04-2021",
+      "transactionDate": "06-03-2021",
+      "cardId": "1111",
+      "details": "Amazon.com Purchase",
+      "withdrawals": 234.56,
+      "deposits": null,
+      "balance": 7180.84
     }
   ]
 }
