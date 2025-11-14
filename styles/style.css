@@ -259,6 +259,10 @@ footer {
   margin-bottom: 30pt;
 }
 
+.mb-70 {
+  margin-bottom: 70pt;
+}
+
 .last-page-footer-paragraph {
   font-size: var(--font-size-sm);
 }

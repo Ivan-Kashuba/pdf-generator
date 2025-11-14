@@ -121,6 +121,393 @@
       "withdrawals": 234.56,
       "deposits": null,
       "balance": 7180.84
+    },
+    {
+      "postedDate": "06-05-2021",
+      "transactionDate": "06-04-2021",
+      "cardId": "1111",
+      "details": "Trader Joe's #78",
+      "withdrawals": 92.41,
+      "deposits": null,
+      "balance": 7088.43
+    },
+    {
+      "postedDate": "06-06-2021",
+      "transactionDate": "06-05-2021",
+      "cardId": "1111",
+      "details": "The Home Depot #3456",
+      "withdrawals": 187.32,
+      "deposits": null,
+      "balance": 6901.11
+    },
+    {
+      "postedDate": "06-07-2021",
+      "transactionDate": "06-06-2021",
+      "cardId": "1111",
+      "details": "AT&T Wireless Payment",
+      "withdrawals": 89.99,
+      "deposits": null,
+      "balance": 6811.12
+    },
+    {
+      "postedDate": "06-07-2021",
+      "transactionDate": "06-06-2021",
+      "cardId": "1111",
+      "details": "Safeway #1245",
+      "withdrawals": 124.89,
+      "deposits": null,
+      "balance": 6686.23
+    },
+    {
+      "postedDate": "06-08-2021",
+      "transactionDate": "06-07-2021",
+      "cardId": "1111",
+      "details": "Peet's Coffee & Tea",
+      "withdrawals": 4.85,
+      "deposits": null,
+      "balance": 6681.38
+    },
+    {
+      "postedDate": "06-09-2021",
+      "transactionDate": "06-08-2021",
+      "cardId": "1111",
+      "details": "Best Buy Store #452",
+      "withdrawals": 456.78,
+      "deposits": null,
+      "balance": 6224.6
+    },
+    {
+      "postedDate": "06-09-2021",
+      "transactionDate": "06-08-2021",
+      "cardId": "",
+      "details": "Wire Transfer - Client Payment",
+      "withdrawals": null,
+      "deposits": 2400.0,
+      "balance": 8624.6
+    },
+    {
+      "postedDate": "06-10-2021",
+      "transactionDate": "06-09-2021",
+      "cardId": "1111",
+      "details": "Shell Gas Station",
+      "withdrawals": 52.3,
+      "deposits": null,
+      "balance": 8572.3
+    },
+    {
+      "postedDate": "06-10-2021",
+      "transactionDate": "06-09-2021",
+      "cardId": "1111",
+      "details": "Chipotle Mexican Grill",
+      "withdrawals": 12.45,
+      "deposits": null,
+      "balance": 8559.85
+    },
+    {
+      "postedDate": "06-11-2021",
+      "transactionDate": "06-10-2021",
+      "cardId": "1111",
+      "details": "Netflix Subscription",
+      "withdrawals": 15.99,
+      "deposits": null,
+      "balance": 8543.86
+    },
+    {
+      "postedDate": "06-12-2021",
+      "transactionDate": "06-11-2021",
+      "cardId": "1111",
+      "details": "Target Store #2341",
+      "withdrawals": 145.67,
+      "deposits": null,
+      "balance": 8398.19
+    },
+    {
+      "postedDate": "06-12-2021",
+      "transactionDate": "06-11-2021",
+      "cardId": "1111",
+      "details": "Lyft Ride",
+      "withdrawals": 22.4,
+      "deposits": null,
+      "balance": 8375.79
+    },
+    {
+      "postedDate": "06-13-2021",
+      "transactionDate": "06-12-2021",
+      "cardId": "1111",
+      "details": "Costco Wholesale #789",
+      "withdrawals": 267.89,
+      "deposits": null,
+      "balance": 8107.9
+    },
+    {
+      "postedDate": "06-14-2021",
+      "transactionDate": "06-13-2021",
+      "cardId": "1111",
+      "details": "PG&E Electric Bill",
+      "withdrawals": 156.78,
+      "deposits": null,
+      "balance": 7951.12
+    },
+    {
+      "postedDate": "06-14-2021",
+      "transactionDate": "06-13-2021",
+      "cardId": "1111",
+      "details": "Macy's Department Store",
+      "withdrawals": 89.5,
+      "deposits": null,
+      "balance": 7861.62
+    },
+    {
+      "postedDate": "06-15-2021",
+      "transactionDate": "06-14-2021",
+      "cardId": "1111",
+      "details": "CVS Pharmacy #5672",
+      "withdrawals": 34.21,
+      "deposits": null,
+      "balance": 7827.41
+    },
+    {
+      "postedDate": "06-16-2021",
+      "transactionDate": "06-15-2021",
+      "cardId": "1111",
+      "details": "Office Depot #123",
+      "withdrawals": 123.45,
+      "deposits": null,
+      "balance": 7703.96
+    },
+    {
+      "postedDate": "06-16-2021",
+      "transactionDate": "06-15-2021",
+      "cardId": "",
+      "details": "ACH Credit - Client Invoice",
+      "withdrawals": null,
+      "deposits": 1800.0,
+      "balance": 9503.96
+    },
+    {
+      "postedDate": "06-17-2021",
+      "transactionDate": "06-16-2021",
+      "cardId": "1111",
+      "details": "Panera Bread",
+      "withdrawals": 14.32,
+      "deposits": null,
+      "balance": 9489.64
+    },
+    {
+      "postedDate": "06-17-2021",
+      "transactionDate": "06-16-2021",
+      "cardId": "1111",
+      "details": "Spotify Premium",
+      "withdrawals": 9.99,
+      "deposits": null,
+      "balance": 9479.65
+    },
+    {
+      "postedDate": "06-18-2021",
+      "transactionDate": "06-17-2021",
+      "cardId": "1111",
+      "details": "Apple Store #892",
+      "withdrawals": 299.99,
+      "deposits": null,
+      "balance": 9179.66
+    },
+    {
+      "postedDate": "06-18-2021",
+      "transactionDate": "06-17-2021",
+      "cardId": "1111",
+      "details": "Uber Eats Delivery",
+      "withdrawals": 35.67,
+      "deposits": null,
+      "balance": 9143.99
+    },
+    {
+      "postedDate": "06-19-2021",
+      "transactionDate": "06-18-2021",
+      "cardId": "1111",
+      "details": "Rent Payment - 611 Main St",
+      "withdrawals": 2850.0,
+      "deposits": null,
+      "balance": 6293.99
+    },
+    {
+      "postedDate": "06-20-2021",
+      "transactionDate": "06-19-2021",
+      "cardId": "1111",
+      "details": "76 Gas Station",
+      "withdrawals": 48.75,
+      "deposits": null,
+      "balance": 6245.24
+    },
+    {
+      "postedDate": "06-20-2021",
+      "transactionDate": "06-19-2021",
+      "cardId": "1111",
+      "details": "Postmates Food Delivery",
+      "withdrawals": 28.9,
+      "deposits": null,
+      "balance": 6216.34
+    },
+    {
+      "postedDate": "06-21-2021",
+      "transactionDate": "06-20-2021",
+      "cardId": "1111",
+      "details": "Comcast Internet Service",
+      "withdrawals": 79.99,
+      "deposits": null,
+      "balance": 6136.35
+    },
+    {
+      "postedDate": "06-22-2021",
+      "transactionDate": "06-21-2021",
+      "cardId": "1111",
+      "details": "REI Co-op Store",
+      "withdrawals": 198.45,
+      "deposits": null,
+      "balance": 5937.9
+    },
+    {
+      "postedDate": "06-22-2021",
+      "transactionDate": "06-21-2021",
+      "cardId": "",
+      "details": "Direct Deposit - Payroll",
+      "withdrawals": null,
+      "deposits": 3200.0,
+      "balance": 9137.9
+    },
+    {
+      "postedDate": "06-23-2021",
+      "transactionDate": "06-22-2021",
+      "cardId": "1111",
+      "details": "Walgreens Pharmacy #8921",
+      "withdrawals": 45.23,
+      "deposits": null,
+      "balance": 9092.67
+    },
+    {
+      "postedDate": "06-23-2021",
+      "transactionDate": "06-22-2021",
+      "cardId": "1111",
+      "details": "Pizza Hut Delivery",
+      "withdrawals": 19.87,
+      "deposits": null,
+      "balance": 9072.8
+    },
+    {
+      "postedDate": "06-24-2021",
+      "transactionDate": "06-23-2021",
+      "cardId": "1111",
+      "details": "Home Depot #7821",
+      "withdrawals": 234.12,
+      "deposits": null,
+      "balance": 8838.68
+    },
+    {
+      "postedDate": "06-25-2021",
+      "transactionDate": "06-24-2021",
+      "cardId": "1111",
+      "details": "FedEx Shipping Services",
+      "withdrawals": 67.89,
+      "deposits": null,
+      "balance": 8770.79
+    },
+    {
+      "postedDate": "06-26-2021",
+      "transactionDate": "06-25-2021",
+      "cardId": "1111",
+      "details": "Airbnb Booking",
+      "withdrawals": 567.45,
+      "deposits": null,
+      "balance": 8203.34
+    },
+    {
+      "postedDate": "06-27-2021",
+      "transactionDate": "06-26-2021",
+      "cardId": "1111",
+      "details": "Pac Bell Gas Station",
+      "withdrawals": 41.2,
+      "deposits": null,
+      "balance": 8162.14
+    },
+    {
+      "postedDate": "06-27-2021",
+      "transactionDate": "06-26-2021",
+      "cardId": "1111",
+      "details": "Bank of America ATM Withdrawal",
+      "withdrawals": 200.0,
+      "deposits": null,
+      "balance": 7962.14
+    },
+    {
+      "postedDate": "06-28-2021",
+      "transactionDate": "06-27-2021",
+      "cardId": "1111",
+      "details": "Petco Animal Supplies",
+      "withdrawals": 78.34,
+      "deposits": null,
+      "balance": 7883.8
+    },
+    {
+      "postedDate": "06-29-2021",
+      "transactionDate": "06-28-2021",
+      "cardId": "1111",
+      "details": "United Airlines Flight",
+      "withdrawals": 412.67,
+      "deposits": null,
+      "balance": 7471.13
+    },
+    {
+      "postedDate": "06-29-2021",
+      "transactionDate": "06-28-2021",
+      "cardId": "1111",
+      "details": "Marriott Hotel Reservation",
+      "withdrawals": 298.9,
+      "deposits": null,
+      "balance": 7172.23
+    },
+    {
+      "postedDate": "06-30-2021",
+      "transactionDate": "06-29-2021",
+      "cardId": "1111",
+      "details": "Staples Office Supply",
+      "withdrawals": 156.78,
+      "deposits": null,
+      "balance": 7015.45
+    },
+    {
+      "postedDate": "06-30-2021",
+      "transactionDate": "06-29-2021",
+      "cardId": "1111",
+      "details": "Southwest Gas Company",
+      "withdrawals": 89.45,
+      "deposits": null,
+      "balance": 6925.0
+    },
+    {
+      "postedDate": "06-30-2021",
+      "transactionDate": "06-30-2021",
+      "cardId": "1111",
+      "details": "Equipment Purchase - Design Co.",
+      "withdrawals": 2084.91,
+      "deposits": null,
+      "balance": 4840.09
+    },
+    {
+      "postedDate": "06-30-2021",
+      "transactionDate": "06-30-2021",
+      "cardId": "",
+      "details": "Client Payment - Final Invoice",
+      "withdrawals": null,
+      "deposits": 2000.5,
+      "balance": 6840.59
+    },
+    {
+      "postedDate": "06-30-2021",
+      "transactionDate": "06-30-2021",
+      "cardId": "1111",
+      "details": "Quarterly Tax Payment",
+      "withdrawals": 4022.25,
+      "deposits": null,
+      "balance": 2818.34
     }
   ]
 }
