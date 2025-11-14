@@ -467,8 +467,11 @@ async function generateHtml(
     pageCount: detectedPageCount,
   });
 
-  if (html !== initialHtml) {
-    await writeFile(outputHtmlPath, html, "utf-8");
+  // Inline styles into output.html
+  const htmlWithInlineStyles = await inlineStyles(html, baseDir);
+
+  if (htmlWithInlineStyles !== initialHtml) {
+    await writeFile(outputHtmlPath, htmlWithInlineStyles, "utf-8");
   }
 
   await copyDirectoryIfExists(stylesDir, path.resolve(outputDir, "styles"));
