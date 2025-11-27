@@ -286,7 +286,6 @@ function renderTransactions(items: TemplateData["transactions"]): string {
       (row) => `
         <tr>
           <td>${row.postedDate}</td>
-          <td>${row.transactionDate}</td>
           <td>${row.cardId}</td>
           <td>${row.details}</td>
           <td class="numeric">${formatCurrency(row.withdrawals)}</td>
