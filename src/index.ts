@@ -186,6 +186,67 @@ function flattenObject(
   return tokenMap;
 }
 
+/**
+ * Configuration for variable interchanges in template.html
+ * Maps old variable format to new variable format
+ * Easy to customize for future needs
+ */
+const VARIABLE_INTERCHANGE_MAP: Record<string, string> = {
+  "{{document.title}}": "{{ statement.title }}",
+  "{{document.singlePageBodyClass}}": "{{ document.single_page_body_class }}",
+  "{{company.name}}": "{{ company.name }}",
+  "{{company.tagline}}": "{{ company.tagline }}",
+  "{{company.contactEmail}}": "{{ company.contact_email }}",
+  "{{company.contactPhone}}": "{{ company.contact_phone }}",
+  "{{document.statementNumber}}": "{{ statement.statement_id[:6] }}",
+  "{{document.accountNumber}}":
+    "**** **** **** {{ statement.account_number_last_four -}}",
+  "{{document.statementPeriod}}":
+    "{{ statement.statement_period_start.strftime('%b %d').replace(' 0', ' ') }} - {{ statement.statement_period_end.strftime('%b %d, %Y').replace(' 0', ' ') }}",
+  "{{document.statementDate}}":
+    "{{ statement.statement_date.strftime('%b %d, %Y').replace(' 0', ' ') }}",
+  "{{document.pageCount}}": "{{ statement.page_count }}",
+  "{{document.qrCode}}":
+    "data:image/png;base64,{{ statement.statement_id_qr_base64 }}",
+  "{{document.qrAltText}}": "{{ statement.statement_id }}",
+  "{{recipient.addressHtml}}":
+    "<p>{{ statement.account_holder_name }}</p>\n              <p>{{ statement.account_holder_address.line1 }}</p>\n              {% if statement.account_holder_address.line2 %}\n              <p>{{ statement.account_holder_address.line2 }}</p>\n              {% endif %}\n              <p>\n                {{ statement.account_holder_address.city }}, {{\n                statement.account_holder_address.state }} {{\n                statement.account_holder_address.postal_code }}\n              </p>",
+  "{{balances.opening}}": "${{ statement.transaction_data.opening_balance }}",
+  "{{balances.withdrawals}}":
+    "- ${{ statement.transaction_data.debits_total }}",
+  "{{balances.deposits}}": "+ ${{ statement.transaction_data.credits_total }}",
+  "{{balances.closingLabel}}":
+    "Closing Balance on {{\n                statement.statement_period_end.strftime('%m-%d-%Y') }}",
+  "{{balances.closing}}": "${{ statement.transaction_data.closing_balance }}",
+  "{{transactions.rows}}":
+    '  <tr>\n              <td>\n                {{ statement.statement_period_start.strftime(\'%m-%d-%Y\') }}\n              </td>\n              <td>Opening Balance</td>\n              <td></td>\n              <td class="numeric"></td>\n              <td class="numeric"></td>\n              <td class="numeric">\n                ${{ statement.transaction_data.opening_balance }}\n              </td>\n            </tr>\n            {% for txn in statement.transaction_data.transactions %}\n            <tr>\n              <td>{{ txn.posted_datetime.strftime(\'%m-%d-%Y\') }}</td>\n              <td>{{ txn.check_number or \'\' }}</td>\n              <td>{{ txn.transaction_description }}</td>\n              <td class="numeric">{{ txn.withdrawal_amount }}</td>\n              <td class="numeric">{{ txn.deposit_amount }}</td>\n              <td class="numeric">${{ txn.account_balance }}</td>\n            </tr>\n            {% endfor %}',
+};
+
+/**
+ * Interchanges variables in the template according to VARIABLE_INTERCHANGE_MAP
+ * This converts the template from the old variable format to the new format
+ */
+function interchangeVariables(template: string): string {
+  let result = template;
+
+  // Sort by length (longest first) to avoid partial replacements
+  // This ensures that longer variables like "{{document.statementPeriod}}"
+  // are replaced before shorter ones like "{{document.title}}"
+  const sortedEntries = Object.entries(VARIABLE_INTERCHANGE_MAP).sort(
+    (a, b) => b[0].length - a[0].length
+  );
+
+  for (const [oldVar, newVar] of sortedEntries) {
+    // Escape special regex characters and replace exact matches
+    // This handles multi-line replacements correctly
+    const escapedOldVar = oldVar.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(escapedOldVar, "g");
+    result = result.replace(regex, newVar);
+  }
+
+  return result;
+}
+
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -478,12 +539,18 @@ async function generateHtml(
   await copyDirectoryIfExists(assetsDir, path.resolve(outputDir, "assets"));
 
   if (shouldCreatePdf) {
+    // Interchange variables in template (convert to new format)
+    const templateWithInterchangedVars = interchangeVariables(templateRaw);
+
     // Create template.html with inlined styles in dist folder
-    const inlinedTemplate = await inlineStyles(templateRaw, baseDir);
+    const inlinedTemplate = await inlineStyles(
+      templateWithInterchangedVars,
+      baseDir
+    );
     const templateHtmlPath = path.resolve(outputDir, "template.html");
     await writeFile(templateHtmlPath, inlinedTemplate, "utf-8");
     console.log(
-      `Template HTML with inlined styles generated at ${templateHtmlPath}`
+      `Template HTML with inlined styles and interchanged variables generated at ${templateHtmlPath}`
     );
   }
 

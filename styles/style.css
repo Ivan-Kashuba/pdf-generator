@@ -54,6 +54,7 @@ footer {
   font-size: 21pt;
   font-weight: var(--font-weight-bold);
   color: #099250;
+  max-width: 200pt;
 }
 
 .metadata-list {
